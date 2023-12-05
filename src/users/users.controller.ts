@@ -40,7 +40,8 @@ export class UsersController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.usersService.delete({ id });
+  @HttpCode(204)
+  remove(@Param('id') id: string) {
+    return this.usersService.delete({ id: parseInt(id) });
   }
 }

@@ -32,6 +32,6 @@ model Portfolio {
   description String
   image       String
   link        String
-  Case        Case?  @relation(fields: [caseId], references: [id])
+  case        Case?  @relation(fields: [caseId], references: [id])
   caseId      Int?
 }

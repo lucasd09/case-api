@@ -7,11 +7,14 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { PortfoliosService } from './portfolios.service';
 import { CreatePortfolioDto, UpdatePortfolioDto } from './dto/portfolio.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
 
 @Controller('portfolios')
+@UseGuards(JwtAuthGuard)
 export class PortfoliosController {
   constructor(private readonly portfoliosService: PortfoliosService) {}
 

@@ -7,12 +7,15 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CasesService } from './cases.service';
 import { CreateCaseDto } from './dto/create.case.dto';
 import { UpdateCaseDto } from './dto/update.case.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
 
 @Controller('cases')
+@UseGuards(JwtAuthGuard)
 export class CasesController {
   constructor(private readonly casesService: CasesService) {}
 

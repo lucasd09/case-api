@@ -10,7 +10,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { PortfoliosService } from './portfolios.service';
-import { CreatePortfolioDto, UpdatePortfolioDto } from './dto/portfolio.dto';
+import {
+  CreatePortfolioDto,
+  UpdatePortfolioDto,
+  wherePortfolioDto,
+} from './dto/portfolio.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
 
 @Controller('portfolios')
@@ -25,8 +29,8 @@ export class PortfoliosController {
   }
 
   @Get()
-  findAll() {
-    return this.portfoliosService.portfolios();
+  findAll(@Body() params: wherePortfolioDto) {
+    return this.portfoliosService.portfolios(params);
   }
   @Get(':id')
   findOne(@Param('id') id: string) {

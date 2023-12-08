@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Portfolio } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
+import { wherePortfolioDto } from './dto/portfolio.dto';
 
 @Injectable()
 export class PortfoliosService {
@@ -14,13 +15,7 @@ export class PortfoliosService {
     });
   }
 
-  async portfolios(params?: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.PortfolioWhereUniqueInput;
-    where?: Prisma.PortfolioWhereInput;
-    orderBy?: Prisma.PortfolioOrderByWithRelationInput;
-  }): Promise<Portfolio[]> {
+  async portfolios(params?: wherePortfolioDto): Promise<Portfolio[]> {
     const { skip, take, cursor, where, orderBy } = params ?? {};
     return this.prisma.portfolio.findMany({
       skip,
